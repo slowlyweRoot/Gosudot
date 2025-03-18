@@ -31,5 +31,3 @@ func remap_key(event):
 	InputMap.action_add_event(action, event)
  
 	text = "%s" % event.as_text()
-
-

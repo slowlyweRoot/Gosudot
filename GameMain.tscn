@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://nkgtye1ft1rn"]
 
-[ext_resource type="Script" path="res://GameMain.gd" id="1_aap5o"]
+[ext_resource type="Script" uid="uid://cit71u8u8yoyr" path="res://GameMain.gd" id="1_aap5o"]
 [ext_resource type="PackedScene" uid="uid://cko3iaf03hjbp" path="res://cursor_circle.tscn" id="3_ufdw6"]
 [ext_resource type="PackedScene" uid="uid://dmbke1l2bhlvq" path="res://garbage_collector.tscn" id="4_34wr6"]
 [ext_resource type="PackedScene" uid="uid://cl3ofq7p1wruv" path="res://backgrounds.tscn" id="4_fmkro"]
-[ext_resource type="Script" path="res://Countdown.gd" id="5_nl050"]
+[ext_resource type="Script" uid="uid://c688rmorsbb2w" path="res://Countdown.gd" id="5_nl050"]
 [ext_resource type="PackedScene" uid="uid://cl73gxacq3lth" path="res://score.tscn" id="6_td0rd"]
 [ext_resource type="PackedScene" uid="uid://brmcw7mkdqv1l" path="res://pause_menu.tscn" id="7_e0jve"]
 [ext_resource type="PackedScene" uid="uid://bvui1lff2bg73" path="res://start_walls.tscn" id="8_4dywn"]

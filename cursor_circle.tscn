@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cko3iaf03hjbp"]
 
-[ext_resource type="Script" path="res://cursor_circle.gd" id="1_ii78a"]
+[ext_resource type="Script" uid="uid://deubeu2rqc063" path="res://cursor_circle.gd" id="1_ii78a"]
 [ext_resource type="Texture2D" uid="uid://m17t852elojv" path="res://osuprojectsz/cursor/cursor1.png" id="1_ojr2v"]
 [ext_resource type="Texture2D" uid="uid://dckqvvb4dx6j0" path="res://osuprojectsz/cursortrail (130).png" id="3_gek3m"]
 
