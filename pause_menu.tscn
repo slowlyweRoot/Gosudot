@@ -1,0 +1,190 @@
+[gd_scene load_steps=6 format=3 uid="uid://brmcw7mkdqv1l"]
+
+[ext_resource type="Shader" path="res://pause_menu.gdshader" id="1_ap1cc"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_m2xna"]
+[ext_resource type="Script" path="res://Button1.gd" id="3_vhkxi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apva1"]
+shader = ExtResource("1_ap1cc")
+shader_parameter/amount = 0.999
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xavb8"]
+color = Color(0.67451, 0.52549, 0.501961, 1)
+thickness = 15
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m2xna")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_apva1")
+layout_mode = 0
+offset_left = -1037.0
+offset_top = -604.0
+offset_right = 1151.0
+offset_bottom = 718.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -788.0
+offset_top = -444.0
+offset_right = 797.0
+offset_bottom = 445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.341176, 0.541176, 0.988235, 1)
+theme_override_colors/font_unselected_color = Color(1, 0.745098, 0.705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 66
+tab_alignment = 1
+all_tabs_in_front = true
+drag_to_rearrange_enabled = true
+tab_focus_mode = 1
+
+[node name="Main" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Main"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="TabContainer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_colors/font_hover_color = Color(0.341176, 0.541176, 0.988235, 1)
+theme_override_font_sizes/font_size = 120
+text = "Resume"
+
+[node name="Restart" type="Button" parent="TabContainer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_colors/font_hover_color = Color(0.341176, 0.541176, 0.988235, 1)
+theme_override_font_sizes/font_size = 120
+text = "Restart"
+
+[node name="Exit" type="Button" parent="TabContainer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_colors/font_hover_color = Color(0.341176, 0.541176, 0.988235, 1)
+theme_override_font_sizes/font_size = 120
+text = "EXIT"
+
+[node name="Game Settings" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Game Settings"]
+layout_mode = 2
+theme_override_constants/margin_left = 155
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Game Settings/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -35
+
+[node name="Difficulty" type="Label" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_font_sizes/font_size = 120
+text = "Difficulty
+
+"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer/Difficulty"]
+layout_mode = 2
+offset_left = 710.0
+offset_top = 70.0
+offset_right = 1022.0
+offset_bottom = 132.0
+theme_override_styles/slider = SubResource("StyleBoxLine_xavb8")
+min_value = -50.0
+max_value = 150.0
+rounded = true
+
+[node name="slidertext" type="Label" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer/Difficulty/HSlider"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 63.0
+offset_right = 112.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 25
+
+[node name="NightMode" type="Label" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_font_sizes/font_size = 120
+text = "NightMode
+
+"
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer/NightMode"]
+modulate = Color(0.729412, 0.85098, 0.658824, 1)
+layout_mode = 0
+offset_left = 718.0
+offset_top = 40.0
+offset_right = 762.0
+offset_bottom = 64.0
+scale = Vector2(4.20199, 4.65508)
+
+[node name="KeyMap" type="Label" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.635294, 0.745098, 0.286275, 1)
+theme_override_font_sizes/font_size = 120
+text = "Buttons
+"
+
+[node name="Button1" type="Button" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+offset_left = 644.0
+offset_top = 37.0
+offset_right = 928.0
+offset_bottom = 155.0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_colors/font_pressed_color = Color(1, 0.823529, 0.792157, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 15
+theme_override_font_sizes/font_size = 80
+toggle_mode = true
+text = "Z"
+script = ExtResource("3_vhkxi")
+
+[node name="Button2" type="Button" parent="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 999.0
+offset_top = 37.0
+offset_right = 1283.0
+offset_bottom = 155.0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+theme_override_colors/font_pressed_color = Color(1, 0.823529, 0.792157, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 15
+theme_override_font_sizes/font_size = 80
+toggle_mode = true
+text = "X"
+script = ExtResource("3_vhkxi")
+action = "xjump"
+
+[connection signal="pressed" from="TabContainer/Main/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="TabContainer/Main/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="TabContainer/Main/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="drag_ended" from="TabContainer/Game Settings/MarginContainer/VBoxContainer/Difficulty/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="value_changed" from="TabContainer/Game Settings/MarginContainer/VBoxContainer/Difficulty/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="TabContainer/Game Settings/MarginContainer/VBoxContainer/NightMode/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap/Button1" to="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap/Button1" method="_on_toggled"]
+[connection signal="toggled" from="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap/Button2" to="TabContainer/Game Settings/MarginContainer/VBoxContainer/KeyMap/Button2" method="_on_toggled"]

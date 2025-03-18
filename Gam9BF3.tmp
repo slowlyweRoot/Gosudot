@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://nkgtye1ft1rn"]
+
+[ext_resource type="Script" path="res://GameMain.gd" id="1_aap5o"]
+[ext_resource type="Texture2D" uid="uid://bg2w1roqtdv7n" path="res://osuprojectsz/backgrounds/01 (2).jpg" id="1_evqh8"]
+[ext_resource type="PackedScene" uid="uid://cko3iaf03hjbp" path="res://cursor_circle.tscn" id="3_ufdw6"]
+[ext_resource type="PackedScene" uid="uid://dmbke1l2bhlvq" path="res://garbage_collector.tscn" id="4_34wr6"]
+
+[sub_resource type="Curve2D" id="Curve2D_3yqoj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1410, -109, 0, 0, 0, 0, 1410, 61, 0, 0, 0, 0, 1405, 239, 0, 0, 0, 0, 1643, -101, 0, 0, 0, 0, 1515, -108, 0, 0, 0, 0, 1471, -5, 0, 0, 0, 0, 1456, 88, 0, 0, 0, 0, 1453, -78, 0, 0, 0, 0, 1436, 146, 0, 0, 0, 0, 1531, -5)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_bns7w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1440, 732, 0, 0, 0, 0, 1446, 438)
+}
+point_count = 2
+
+[node name="GameMain" type="Node2D"]
+script = ExtResource("1_aap5o")
+
+[node name="01(2)" type="Sprite2D" parent="."]
+position = Vector2(612.5, 338.5)
+scale = Vector2(2.50833, 1.37167)
+texture = ExtResource("1_evqh8")
+
+[node name="cursorCircle" parent="." instance=ExtResource("3_ufdw6")]
+position = Vector2(25, 308)
+
+[node name="Spawn1" type="Path2D" parent="."]
+position = Vector2(3, 1)
+curve = SubResource("Curve2D_3yqoj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Spawn1"]
+unique_name_in_owner = true
+position = Vector2(1633.28, -101.532)
+rotation = -3.08696
+progress = 772.891
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.146
+autostart = true
+
+[node name="GarbageCollector" parent="." instance=ExtResource("4_34wr6")]
+position = Vector2(-1689, -214)
+scale = Vector2(2.51169, 1.75271)
+
+[node name="Spawn2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bns7w")
+
+[node name="Spawn2PathFollow2D" type="PathFollow2D" parent="Spawn2"]
+unique_name_in_owner = true
+position = Vector2(1440, 732)
+rotation = -1.55039
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

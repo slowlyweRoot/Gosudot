@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://fomek1r63qfj"]
+
+[ext_resource type="Script" path="res://shadertest.gd" id="1_u6i5t"]
+[ext_resource type="Shader" path="res://trail.gdshader" id="1_wcxb5"]
+[ext_resource type="Texture2D" uid="uid://dckqvvb4dx6j0" path="res://osuprojectsz/cursortrail (130).png" id="2_uwhec"]
+[ext_resource type="Script" path="res://trail.gd" id="3_rwdme"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66h3h"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dewci"]
+noise_type = 2
+seed = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jcj0m"]
+noise = SubResource("FastNoiseLite_dewci")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgjqo"]
+resource_local_to_scene = true
+shader = ExtResource("1_wcxb5")
+shader_parameter/amount = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jcj0m")
+
+[node name="shadertest" type="RigidBody2D"]
+top_level = true
+script = ExtResource("1_u6i5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_66h3h")
+disabled = true
+
+[node name="trail" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_bgjqo")
+texture = ExtResource("2_uwhec")
+script = ExtResource("3_rwdme")

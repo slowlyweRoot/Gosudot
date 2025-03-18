@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cko3iaf03hjbp"]
+
+[ext_resource type="Script" path="res://cursor_circle.gd" id="1_ii78a"]
+[ext_resource type="Texture2D" uid="uid://m17t852elojv" path="res://osuprojectsz/cursor/cursor1.png" id="1_ojr2v"]
+[ext_resource type="Texture2D" uid="uid://dckqvvb4dx6j0" path="res://osuprojectsz/cursortrail (130).png" id="3_gek3m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dxacg"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6qxjd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qw6i"]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7ahp"]
+radius = 13.0384
+
+[node name="cursorCircle" type="RigidBody2D"]
+process_mode = 1
+z_index = 9
+material = SubResource("CanvasItemMaterial_dxacg")
+mass = 0.12
+gravity_scale = 2.0
+script = ExtResource("1_ii78a")
+jump_impulse = 1700
+
+[node name="Cursor1" type="Sprite2D" parent="."]
+light_mask = 262144
+z_index = 9
+material = SubResource("CanvasItemMaterial_6qxjd")
+texture = ExtResource("1_ojr2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0qw6i")
+
+[node name="Area2D" type="Area2D" parent="."]
+light_mask = 257
+visibility_layer = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l7ahp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(500, 0)
+zoom = Vector2(1.25, 1.25)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="NightLight" type="PointLight2D" parent="."]
+visible = false
+energy = 0.59
+range_z_max = 2048
+range_item_cull_mask = 1023
+texture = ExtResource("3_gek3m")
+texture_scale = 43.4
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

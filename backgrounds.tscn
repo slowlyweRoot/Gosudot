@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl3ofq7p1wruv"]
+
+[ext_resource type="Script" path="res://backgrounds.gd" id="1_t0fv8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q366l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ub0k3"]
+size = Vector2(1600, 900)
+
+[node name="backgrounds" type="StaticBody2D"]
+show_behind_parent = true
+script = ExtResource("1_t0fv8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("RectangleShape2D_q366l")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(3, 0)
+scale = Vector2(0.951845, 1.04388)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visibility_layer = 512
+shape = SubResource("RectangleShape2D_ub0k3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

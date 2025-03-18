@@ -1,0 +1,151 @@
+[gd_scene load_steps=13 format=3 uid="uid://nkgtye1ft1rn"]
+
+[ext_resource type="Script" path="res://GameMain.gd" id="1_aap5o"]
+[ext_resource type="PackedScene" uid="uid://cko3iaf03hjbp" path="res://cursor_circle.tscn" id="3_ufdw6"]
+[ext_resource type="PackedScene" uid="uid://dmbke1l2bhlvq" path="res://garbage_collector.tscn" id="4_34wr6"]
+[ext_resource type="PackedScene" uid="uid://cl3ofq7p1wruv" path="res://backgrounds.tscn" id="4_fmkro"]
+[ext_resource type="Script" path="res://Countdown.gd" id="5_nl050"]
+[ext_resource type="PackedScene" uid="uid://cl73gxacq3lth" path="res://score.tscn" id="6_td0rd"]
+[ext_resource type="PackedScene" uid="uid://brmcw7mkdqv1l" path="res://pause_menu.tscn" id="7_e0jve"]
+[ext_resource type="PackedScene" uid="uid://bvui1lff2bg73" path="res://start_walls.tscn" id="8_4dywn"]
+
+[sub_resource type="SystemFont" id="SystemFont_407yv"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bxq2"]
+bg_color = Color(0.0823529, 0.0823529, 0.0823529, 0.780392)
+
+[sub_resource type="SystemFont" id="SystemFont_lfmdn"]
+
+[sub_resource type="SystemFont" id="SystemFont_ds1k2"]
+font_names = PackedStringArray("Consolas")
+
+[node name="GameMain" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_aap5o")
+distanceBetweenDefaults = Vector2(0, 500)
+
+[node name="cursorLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="cursorCircle" parent="cursorLayer" instance=ExtResource("3_ufdw6")]
+unique_name_in_owner = true
+light_mask = 262144
+visibility_layer = 262144
+position = Vector2(301, 447)
+jump_impulse = 1500
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[node name="GarbageCollector" parent="." instance=ExtResource("4_34wr6")]
+position = Vector2(-2492, -214)
+scale = Vector2(10.6004, 4201.13)
+collision_layer = 4294967295
+collision_mask = 4294967295
+
+[node name="backgrounds" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(748, 462)
+
+[node name="backgrounds2" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(748, -399)
+
+[node name="backgrounds3" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(1448, -305)
+
+[node name="backgrounds4" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(1609, 307)
+
+[node name="backgrounds5" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(1798, 973)
+
+[node name="backgrounds6" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(573, 1088)
+
+[node name="backgrounds7" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(-146, 691)
+
+[node name="backgrounds8" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(-180, -56)
+
+[node name="backgrounds9" parent="." instance=ExtResource("4_fmkro")]
+position = Vector2(-133, -392)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("6_td0rd")]
+unique_name_in_owner = true
+visible = false
+top_level = true
+offset_left = 24.0
+offset_top = 29.0
+offset_right = 32.0
+offset_bottom = 62.0
+theme_override_fonts/font = SubResource("SystemFont_407yv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6bxq2")
+
+[node name="Countdown" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.5
+offset_top = -33.5
+offset_right = 189.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.12532, 1.09719)
+script = ExtResource("5_nl050")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Countdown"]
+autostart = true
+
+[node name="Counter" type="Label" parent="CanvasLayer/Countdown"]
+layout_mode = 0
+offset_right = 373.0
+offset_bottom = 64.0
+theme_type_variation = &"GraphNodeTitleLabel"
+theme_override_colors/font_color = Color(5.77569e-06, 0.581446, 0.791076, 1)
+theme_override_colors/font_shadow_color = Color(0.470588, 0.403922, 0.376471, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_lfmdn")
+theme_override_font_sizes/font_size = 46
+text = "READY TO START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsCounter" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_ds1k2")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_e0jve")]
+visible = false
+
+[node name="StartWalls" parent="." instance=ExtResource("8_4dywn")]
+position = Vector2(192, 970)
+
+[node name="StartWalls2" parent="." instance=ExtResource("8_4dywn")]
+position = Vector2(199, -21)
+
+[node name="NightMode" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
+visible = false
+color = Color(0.0352941, 0.00392157, 0.239216, 1)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Countdown/Timer" to="CanvasLayer/Countdown" method="_on_timer_timeout"]
